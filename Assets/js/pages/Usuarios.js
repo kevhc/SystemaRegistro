@@ -5,6 +5,27 @@ const title = document.querySelector('#title');
 
 const myModal = new bootstrap.Modal(modalRegistro);
 
+
+//CARGAR DATOS CON DATATABLE
+
+$('#tblUsuarios').DataTable( {
+    ajax: {
+        url: base_url +'Usuario/listar',
+        dataSrc: 'staff'
+    },
+    columns: [ 
+        {data:Id}
+        {data:Nombre}
+        {data:Email}
+        {data:Usuario}
+        {data:Perfil}
+        {data:Fecha Registro}
+        {data:Foto}
+     ]
+} );
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
   btnNuevo.addEventListener('click', function () {
     myModal.show();
@@ -13,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   frm.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (ss
+    if (
       frm.nombre.value == '' ||
       frm.apellido.value == '' ||
       frm.email.value == '' ||

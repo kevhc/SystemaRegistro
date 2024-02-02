@@ -40,7 +40,7 @@ class Usuarios extends Controller
                 if (empty($verificarUsuario)) {
 
                     $hash = password_hash($clave, PASSWORD_DEFAULT);
-                    $data = $this->model->getUsuarios($nombre, $apellido, $email, $usuario, $hash, $rol);
+                    $data = $this->model->getRegistrar($nombre, $apellido, $email, $usuario, $hash, $rol);
                     if ($data > 0) {
                         $res = array('tipo' => 'success', 'mensaje' => 'USUARIO REGISTRADO');
                     } else {
@@ -56,6 +56,14 @@ class Usuarios extends Controller
         }
 
         echo json_encode($res, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function listar()
+    {
+
+        $data = $this->model->getUsuarios();
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
 
