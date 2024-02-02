@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   frm.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (
+    if (ss
       frm.nombre.value == '' ||
       frm.apellido.value == '' ||
       frm.email.value == '' ||
