@@ -63,9 +63,55 @@ class Usuarios extends Controller
     {
 
         $data = $this->model->getUsuarios();
+        //concatenar dos palabras
+        for ($i = 0; $i < count($data); $i++) {
+
+
+
+            if ($data[$i]['id'] == 1) {
+
+                $data[$i]['acciones'] = '<a class="btn btn-primary"> SUPER ADMIN</a>';
+
+            } else {
+
+                $data[$i]['acciones'] = '<div>
+            <a href="#" class="btn btn-primary" onclick="editar(' . $data[$i]['id'] . ')"><i class="fa-solid fa-pen"></i></a>
+            <a href="#" class="btn btn-dark" onclick="eliminar(' . $data[$i]['id'] . ')"><i class="fa-solid fa-trash"></i></i></a>
+            </div>';
+            }
+
+
+
+            $data[$i]['nombres'] = $data[$i]['nombre'] . " " . $data[$i]['apellido'];
+        }
+
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
 
+    public function delete($id)
+    {
+
+        $data = $this->model->delete($id);
+
+        if ($data == 1) {
+            $res = array('tipo' => 'success', 'mensaje' => 'USUARIO DADO DE BAJA');
+        } else {
+            $res = array('tipo' => 'warning', 'mensaje' => 'ERROR AL ELIMINAR');
+        }
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function editar($id)
+    {
+
+
+        $data = $this->model->getUsuario($id);
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+
+
+    }
 
 }

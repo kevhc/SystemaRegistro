@@ -19,7 +19,7 @@ class UsuariosModel extends Query
 
     public function getUsuarios()
     {
-        $sql = "SELECT id,nombre, apellido, email, usuario, clave, rol,perfil FROM usuarios WHERE estado = 1";
+        $sql = "SELECT id,nombre, apellido, email, usuario, clave, rol,perfil,fecha FROM usuarios WHERE estado = 1";
         return $this->selectAll($sql);
 
     }
@@ -30,6 +30,19 @@ class UsuariosModel extends Query
         return $this->select($sql);
     }
 
+    public function delete($id)
+    {
+        $sql = "UPDATE  usuarios SET estado=? WHERE id =?";
+        $datos = array('0', $id);
+        return $this->save($sql, $datos);
+    }
+
+
+    public function getUsuario($id)
+    {
+        $sql = "SELECT id,nombre, apellido, email, usuario, clave, rol,perfil,fecha FROM usuarios WHERE id = $id";
+        return $this->select($sql);
+    }
 
 
 }

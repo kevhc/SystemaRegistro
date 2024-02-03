@@ -1,98 +1,66 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="en">
 
 <head>
-
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         <?php echo $data['title'] ?>
     </title>
-
-    <!-- Custom fonts for this template-->
-    <link href=" <?php echo BASE_URL . 'Assets/vendor/fontawesome-free/css/all.min.css' ?>" rel="stylesheet"
-        type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="<?php echo BASE_URL . 'Assets/css/sb-admin-2.min.css' ?>" rel="stylesheet">
-
+    <link rel="shortcut icon" type="image/png" href="<?php echo BASE_URL . 'Assets/images/logos/favicon.png' ?>" />
+    <link rel="stylesheet" href="<?php echo BASE_URL . 'Assets/css/styles.min.css' ?>" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+
+
 
 </head>
 
-<body class="bg-gradient-primary">
-
-    <div class="container">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-
-            <div class="col-xl-10 col-lg-12 col-md-9">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Bienvenido al Sistema de Registro</h1>
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <div
+            class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center w-100">
+                <div class="row justify-content-center w-100">
+                    <div class="col-md-8 col-lg-6 col-xxl-3">
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                                    <img src="<?php echo BASE_URL . 'Assets/images/logos/dark-logo.svg' ?>" width="180"
+                                        alt="">
+                                </a>
+                                <p class="text-center">Bienvenido al Sistema de Registro</p>
+                                <form id="formulario">
+                                    <div class="mb-3">
+                                        <label for="usuario" class="form-label">Usuario</label>
+                                        <input type="text" class="form-control" id="usuario" name="usuario"
+                                            aria-describedby="usuario" placeholder="usuario">
                                     </div>
-                                    <form class="user" id="formulario">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                placeholder="Usuario" id="usuario" name="usuario"
-                                                aria-describedby="usuario">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="clave"
-                                                placeholder="Contraseña" id="clave" aria-describedby="clave">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Iniciar Sesion
-                                        </button>
+                                    <div class="mb-4">
+                                        <label for="clave" class="form-label">Contraseña</label>
+                                        <input type="password" class="form-control" id="clave" name="clave"
+                                            placeholder="clave">
+                                    </div>
 
+                                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Iniciar
+                                        Sesion</button>
 
-                                    </form>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?php echo BASE_URL . 'Assets/vendor/jquery/jquery.min.js' ?>"></script>
-    <script src="<?php echo BASE_URL . 'Assets/vendor/bootstrap/js/bootstrap.bundle.min.js' ?>"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="<?php echo BASE_URL . 'Assets/vendor/jquery-easing/jquery.easing.min.js' ?>"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="<?php echo BASE_URL . 'Assets/js/sb-admin-2.min.js' ?>"></script>
+    <script src="<?php echo BASE_URL . 'Assets/libs/jquery/dist/jquery.min.js' ?>"></script>
+    <script src="<?php echo BASE_URL . 'Assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' ?>"></script>
     <script src="<?php echo BASE_URL . 'Assets/js/Custom.js' ?>"> </script>
     <script src="<?php echo BASE_URL . 'Assets/js/pages/login.js' ?>"> </script>
     <script>

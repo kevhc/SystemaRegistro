@@ -21,16 +21,16 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="tblUsuarios" width="100%" cellspacing="0">
+                <table class="table table-bordered display nowrap" id="tblUsuarios" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Usuario</th>
-                            <th>Perfil</th>
                             <th>Fecha Registro</th>
-                            <th>Foto</th>
+                            <th>Acciones</th>
+
                         </tr>
                     </thead>
 
@@ -53,12 +53,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <?php echo $data['title'] ?>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form id="formulario" autocomplete="off">
+                <input type="hidden" id="id_usuario" name="id_usuario">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -123,8 +126,8 @@
                                     <span class="input-group-text" id="basic-addon1"><i
                                             class="fa-solid fa-key"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Contraseña" id="clave" name="clave"
-                                    aria-label="clave" aria-describedby="basic-addon1" required>
+                                <input type="password" class="form-control" placeholder="Contraseña" id="clave"
+                                    name="clave" aria-label="clave" aria-describedby="basic-addon1" required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -155,7 +158,7 @@
             </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Registrar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>
