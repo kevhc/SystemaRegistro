@@ -1,5 +1,6 @@
 <?php
 require_once 'Config/Config.php';
+require_once "Config/Helpers.php";
 $ruta = !empty($_GET['url']) ? $_GET['url'] : "principal/index";
 $array = explode("/", $ruta);
 $controller = ucfirst($array[0]);

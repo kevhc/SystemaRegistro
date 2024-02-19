@@ -1,5 +1,5 @@
 <?php
-class Productores extends Controller
+class Formulario extends Controller
 {
     public function __construct()
     {
@@ -10,8 +10,8 @@ class Productores extends Controller
     public function index()
     {
         $data['title'] = 'Gestion de Productores';
-        $data['script'] = 'Productores.js';
-        $this->views->getView('Productores', 'index', $data);
+        $data['script'] = 'Formulario.js';
+        $this->views->getView('Formulario', $data);
     }
 
     public function listar()
@@ -20,7 +20,7 @@ class Productores extends Controller
         $data = $this->model->getProductores();
         //concatenar dos palabras
         for ($i = 0; $i < count($data); $i++) {
-            $data[$i]['imagen'] = '<img class="img-thumbnail" src="' . BASE_URL . "Assets/images/productores/" . $data[$i]['foto'] . '" width="80">';
+
             $data[$i]['acciones'] = '<div>
             <button type="button" class="btn btn-primary" onclick="editar(' . $data[$i]['id'] . ')"><i class="ti ti-pencil" style="font-size: 23px;"></i></button>
             <button type="button" class="btn btn-dark" onclick="eliminar(' . $data[$i]['id'] . ')"><i class="ti ti-trash"style="font-size: 23px;"></i></button>
@@ -49,13 +49,7 @@ class Productores extends Controller
         $latitud = strClean($_POST['latitud']);
         $altitud = strClean($_POST['altitud']);
         $id_productores = strClean($_POST['id_productores']);
-        $usuario_activo = $_SESSION['id'];
 
-
-        $img = $_FILES['imagen'];
-        $name = $img['name'];
-        $fecha = date("YmdHis");
-        $tmpName = $img['tmp_name'];
 
 
         if (
@@ -68,32 +62,6 @@ class Productores extends Controller
             $res = array('tipo' => 'warning', 'mensaje' => 'TODOS LOS CAMPOS SON REQUERIDOS');
 
         } else {
-
-
-            if (!empty($name)) {
-
-                $extension = pathinfo($name, PATHINFO_EXTENSION);
-                $formatos_permitidos = array('png', 'jpeg', 'jpg');
-                $extension = pathinfo($name, PATHINFO_EXTENSION);
-
-                if (!in_array($extension, $formatos_permitidos)) {
-
-                    $res = array('tipo' => 'warning', 'mensaje' => 'ARCHIVO NO PERMITIDO');
-
-                } else {
-
-                    $imgNombre = $fecha . ".jpg";
-                    $destino = "Assets/images/productores/" . $imgNombre;
-                }
-            } else if (!empty($_POST['foto_actual']) && empty($name)) {
-
-                $imgNombre = $_POST['foto_actual'];
-
-            } else {
-                $imgNombre = "perfil.jpg";
-            }
-
-
 
             if ($id_productores == '') {
                 //COMPROBAR SI EXISTE EL CORREO
@@ -118,40 +86,10 @@ class Productores extends Controller
                             $telefono,
                             $longitud,
                             $latitud,
-                            $altitud,
-                            $imgNombre,
-                            $usuario_activo
+                            $altitud
                         );
                         if ($data > 0) {
                             $res = array('tipo' => 'success', 'mensaje' => 'PRODUCTOR REGISTRADO');
-                            // guardar los datos en el historico de receta
-                            $evento = "CREADO";
-                            //consultar el id que acabamos de crear
-                            $id_consulta = $this->model->IdProductor($dni);
-                            $id = $id_consulta['id'];
-
-                            $data2 = $this->model->h_productores(
-                                $id,
-                                $nombre,
-                                $apellido,
-                                $dni,
-                                $sexo,
-                                $caserio,
-                                $distrito,
-                                $provincia,
-                                $region,
-                                $estatus,
-                                $telefono,
-                                $longitud,
-                                $latitud,
-                                $altitud,
-                                $imgNombre,
-                                $usuario_activo,
-                                $evento
-                            );
-                            if (!empty($name)) {
-                                move_uploaded_file($tmpName, $destino);
-                            }
                         } else {
                             $res = array('tipo' => 'error', 'mensaje' => 'ERROR AL  REGISTRAR');
                         }
@@ -163,14 +101,6 @@ class Productores extends Controller
                     $res = array('tipo' => 'warning', 'mensaje' => 'El DNI YA EXISTE');
                 }
             } else {
-
-                $imgDelete = $this->model->getProductor($id_productores);
-
-                if (isset($imgDelete['foto']) && $imgDelete['foto'] != 'user-1.jpg') {
-                    if (file_exists("Assets/images/productores/" . $imgDelete['foto'])) {
-                        unlink("Assets/images/productores/" . $imgDelete['foto']);
-                    }
-                }
 
                 $verificarDni = $this->model->getVerificar('dni', $dni, $id_productores);
 
@@ -194,39 +124,9 @@ class Productores extends Controller
                             $longitud,
                             $latitud,
                             $altitud,
-                            $imgNombre,
-                            $usuario_activo,
                             $id_productores
                         );
                         if ($data == 1) {
-
-                            $evento = "MODIFICADO";
-
-                            $data2 = $this->model->h_productores(
-                                $id_productores,
-                                $nombre,
-                                $apellido,
-                                $dni,
-                                $sexo,
-                                $caserio,
-                                $distrito,
-                                $provincia,
-                                $region,
-                                $estatus,
-                                $telefono,
-                                $longitud,
-                                $latitud,
-                                $altitud,
-                                $imgNombre,
-                                $usuario_activo,
-                                $evento
-                            );
-
-
-
-                            if (!empty($name)) {
-                                move_uploaded_file($tmpName, $destino);
-                            }
                             $res = array('tipo' => 'success', 'mensaje' => 'PRODUCTOR MODIFICADO');
                         } else {
                             $res = array('tipo' => 'error', 'mensaje' => 'ERROR AL  MODIFICAR');

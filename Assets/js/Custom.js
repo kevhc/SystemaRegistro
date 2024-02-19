@@ -30,15 +30,18 @@ function eliminarRegistro(title, text, accion, url, table) {
         if (this.readyState == 4 && this.status == 200) {
 
           const res = JSON.parse(this.responseText);
+          alertaPersonalizada(res.tipo, res.mensaje);
 
-          alertaPersonalizada(res.tipo,res.mensaje);
-           if (res.tipo == 'success') {
-             table.ajax.reload();
-           }
-        }
-      };
+          if (res.tipo == 'success') {
+            table.ajax.reload();
+          }
+
+        };
+
+      }
     }
   });
+
 }
 
 function acceso(params) {
@@ -67,7 +70,3 @@ function acceso(params) {
 }
 
 // select2
-
-$(document).ready(function () {
-  $('.js-example-basic-multiple').select2();
-});

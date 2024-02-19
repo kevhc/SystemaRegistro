@@ -42,7 +42,6 @@
                             <th>Sexo</th>
                             <th>Region</th>
                             <th>Telefono</th>
-                            <th>Foto</th>
                             <th>Fecha Registro</th>
                             <th>Acciones</th>
 
@@ -220,7 +219,7 @@
                                 <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*"
                                     onchange="previewImage()">
                             </div>
-                            <img id="imagenPreview" class="img-thumbnail" width="150">
+                            <img id="imagenPreview" class="img-thumbnail" width="150" style="display:none;">
                         </div>
                     </div>
 

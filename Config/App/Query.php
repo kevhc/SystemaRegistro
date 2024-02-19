@@ -1,7 +1,9 @@
 <?php
-class Query extends Conexion{
+class Query extends Conexion
+{
     private $pdo, $con, $sql, $datos;
-    public function __construct() {
+    public function __construct()
+    {
         $this->pdo = new Conexion();
         $this->con = $this->pdo->conect();
     }
@@ -29,7 +31,7 @@ class Query extends Conexion{
         $data = $insert->execute($this->datos);
         if ($data) {
             $res = 1;
-        }else{
+        } else {
             $res = 0;
         }
         return $res;

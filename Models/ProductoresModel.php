@@ -1,89 +1,167 @@
 <?php
 class ProductoresModel extends Query
 {
+
     public function __construct()
     {
         parent::__construct();
     }
-    // public function verificarPermisos($id_user, $permiso)
-    // {
-    //     $tiene = false;
-    //     $sql = "SELECT p.*, d.* FROM permisos p INNER JOIN detalle_permisos d ON p.id = d.id_permiso WHERE d.id_usuario = $id_user AND p.nombre = '$permiso'";
-    //     $existe = $this->select($sql);
-    //     if ($existe != null || $existe != "") {
-    //         $tiene = true;
-    //     }
-    //     return $tiene;
-    // }
-    public function getArea()
-    {
-        // si es 1 
-        if ($_SESSION['id_usuario'] == 1) {
-            $sql = "SELECT * FROM area ";
-            $res = $this->selectAll($sql);
 
-        } else {
-            $sql = "SELECT * FROM area WHERE estado = 1 ";
-            $res = $this->selectAll($sql);
-        }
+    public function registrar(
+        $nombre,
+        $apellido,
+        $dni,
+        $sexo,
+        $caserio,
+        $distrito,
+        $provincia,
+        $region,
+        $estatus,
+        $telefono,
+        $longitud,
+        $latitud,
+        $altitud,
+        $imgNombre,
+        $usuario_activo
+    ) {
 
-        return $res;
-    }
-    public function editArea($id)
-    {
-        $sql = "SELECT * FROM area WHERE id = $id";
-        $res = $this->select($sql);
-        return $res;
-    }
+        $sql = "INSERT INTO productores(nombre, apellido, dni, sexo,caserio,distrito,provincia,region,estatus,telefono,longitud,latitud,altitud,foto,estado,user_c,user_m) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,1,?,?)";
 
-    public function insertarArea($nombre_area, $descripcion_area, $usuario_activo)
-    {
-        $verificar = "SELECT * FROM area WHERE area = '$nombre_area' AND estado=1";
-        $existe = $this->select($verificar);
-        // si no existe 
-        if (empty($existe)) {
-            $query = "INSERT INTO area(area,descripcion,user_c,user_m) VALUES (?,?,?,?)";
-            $datos = array($nombre_area, $descripcion_area, $usuario_activo, $usuario_activo);
-            $data = $this->save($query, $datos);
-            if ($data == 1) {
-                $res = "ok";
-            } else {
-                $res = "error";
-            }
-        } else {
-            // si existe informacion 
-            $res = "existe";
-        }
-        return $res;
+        $datos = array(
+            $nombre,
+            $apellido,
+            $dni,
+            $sexo,
+            $caserio,
+            $distrito,
+            $provincia,
+            $region,
+            $estatus,
+            $telefono,
+            $longitud,
+            $latitud,
+            $altitud,
+            $imgNombre,
+            $usuario_activo,
+            $usuario_activo
+        );
+        return $this->insertar($sql, $datos);
     }
 
-    public function actualizarArea($nombre_area, $descripcion_area, $usuario_activo, $id)
+    public function getProductores()
     {
-        $fecha = date("Y-m-d H:i:s");
-        $verificar = "SELECT * FROM area WHERE area = '$nombre_area' AND estado=1";
-        $existe = $this->select($verificar);
-        if (empty($existe)) {
-            $query = "UPDATE area SET  area = ? ,descripcion = ?, updated_at = ?  ,user_m = ? WHERE id = ?";
-            $datos = array($nombre_area, $descripcion_area, $fecha, $usuario_activo, $id);
-            $data = $this->save($query, $datos);
-        } else {
-            $data = 2;
-        }
-        if ($data == 1) {
-            $res = "modificado";
-        } else if ($data == 2) {
-            $res = 2;
-        } else {
-            $res = "error";
-        }
-        return $res;
+        $sql = "SELECT id,nombre, apellido, dni, sexo, region, telefono,foto,fecha FROM productores WHERE estado = 1";
+        return $this->selectAll($sql);
     }
-    // guardar en el historial 
 
-    public function h_area($id, $nombre_area, $descripcion_area, $usuario_activo, $evento)
+    public function getVerificar($item, $nombre, $id)
     {
-        $query = "INSERT INTO h_area(area_id,area,descripcion,user,evento )VALUES (?,?,?,?,?)";
-        $datos = array($id, $nombre_area, $descripcion_area, $usuario_activo, $evento);
+        if ($id > 0) {
+
+            $sql = "SELECT id FROM productores WHERE $item = '$nombre' AND id != $id AND estado = 1";
+        } else {
+
+            $sql = "SELECT id FROM productores WHERE $item = '$nombre'  AND estado = 1";
+        }
+        return $this->select($sql);
+    }
+
+    public function delete($id)
+    {
+        $sql = "UPDATE productores SET estado = ? WHERE id = ?";
+        $datos = array(0, $id);
+        return $this->save($sql, $datos);
+    }
+
+
+    public function getProductor($id)
+    {
+        $sql = "SELECT id,nombre, apellido, dni, sexo,caserio,distrito,provincia,region,estatus,telefono,longitud,latitud,altitud,foto FROM productores WHERE id = $id";
+        return $this->select($sql);
+    }
+
+    public function modificar(
+        $nombre,
+        $apellido,
+        $dni,
+        $sexo,
+        $caserio,
+        $distrito,
+        $provincia,
+        $region,
+        $estatus,
+        $telefono,
+        $longitud,
+        $latitud,
+        $altitud,
+        $imgNombre,
+        $usuario_activo,
+        $id_productores
+    ) {
+
+        $sql = "UPDATE productores SET nombre=?,apellido=?,dni=?,sexo=?,caserio=?,distrito=?,provincia=?,region=?,estatus=?,telefono=?,longitud=?,latitud=?,altitud=?,foto=?,user_m = ? WHERE id = ?";
+
+        $datos = array(
+            $nombre,
+            $apellido,
+            $dni,
+            $sexo,
+            $caserio,
+            $distrito,
+            $provincia,
+            $region,
+            $estatus,
+            $telefono,
+            $longitud,
+            $latitud,
+            $altitud,
+            $imgNombre,
+            $usuario_activo,
+            $id_productores
+        );
+        return $this->save($sql, $datos);
+    }
+
+    public function h_productores(
+        $id,
+        $nombre,
+        $apellido,
+        $dni,
+        $sexo,
+        $caserio,
+        $distrito,
+        $provincia,
+        $region,
+        $estatus,
+        $telefono,
+        $longitud,
+        $latitud,
+        $altitud,
+        $imgNombre,
+        $usuario_activo,
+        $evento
+    ) {
+        $query = "INSERT INTO h_productores(productor_id,nombre,apellido,dni,sexo,
+        caserio,distrito,provincia,region,estatus,telefono,longitud,latitud,altitud,foto,user,evento) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $datos = array(
+            $id,
+            $nombre,
+            $apellido,
+            $dni,
+            $sexo,
+            $caserio,
+            $distrito,
+            $provincia,
+            $region,
+            $estatus,
+            $telefono,
+            $longitud,
+            $latitud,
+            $altitud,
+            $imgNombre,
+            $usuario_activo,
+            $evento
+        );
         $data = $this->save($query, $datos);
         if ($data == 1) {
             $res = "ok";
@@ -93,54 +171,13 @@ class ProductoresModel extends Query
         return $res;
     }
 
-    public function estadoArea($estado, $id)
+    public function IdProductor($dni)
     {
-        // primero seleccionamos los datos 
-        $tomar_datos = "SELECT * FROM area WHERE id = '$id' ";
-        $data_area = $this->select($tomar_datos);
-        $nombre_area = $data_area['area'];
-        $descripcion = $data_area['descripcion'];
-        $fecha = date("Y-m-d H:i:s");
-        $user = $_SESSION['id_usuario'];
-        // validamos el evento con el estado
-        if ($estado == 0) {
-            $evento = "ELIMINADO";
-            $query = "UPDATE area SET  updated_at = ?  ,user_m = ? ,estado = ? WHERE id = ?";
-            $datos = array($fecha, $user, $estado, $id);
-            $data = $this->save($query, $datos);
-
-        } else {
-            $evento = "RESTAURADO";
-            // debe haber paso previo de validacion para no restaurar duplicados 
-            $validarDuplicado = "SELECT * FROM area WHERE area = '$nombre_area' AND estado=1";
-            $existe = $this->select($validarDuplicado);
-            if (empty($existe)) {
-                $query = "UPDATE area SET  updated_at = ?  ,user_m = ? ,estado = ? WHERE id = ?";
-                $datos = array($fecha, $user, $estado, $id);
-                $data = $this->save($query, $datos);
-            } else {
-                $data = 2;
-            }
-
-
-        }
-        // aqui actualizamos los datos en estado 0 para elimminar logicamente la receta en vista 
-
-        // aqui guardamos el evento en el historico
-        $query_h = "INSERT INTO h_area(area_id,area,descripcion,user,evento,estado) VALUES (?,?,?,?,?,?)";
-        $datos_h = array($id, $nombre_area, $descripcion, $user, $evento, $estado);
-        $data_h = $this->save($query_h, $datos_h);
-
-        return $data;
-    }
-
-    public function IdArea($nombre_area)
-    {
-        $sql = "SELECT id FROM area WHERE area = '$nombre_area' AND estado=1";
+        $sql = "SELECT id FROM productores WHERE dni = '$dni' AND estado=1";
         $res = $this->select($sql);
         return $res;
     }
 
-}
 
-?>
+
+}

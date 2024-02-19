@@ -42,7 +42,6 @@
                             <th>Sexo</th>
                             <th>Region</th>
                             <th>Telefono</th>
-                            <th>Foto</th>
                             <th>Fecha Registro</th>
                             <th>Acciones</th>
 
@@ -220,27 +219,15 @@
                                 <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*"
                                     onchange="previewImage()">
                             </div>
-                            <img id="imagenPreview" class="img-thumbnail" width="150">
+                            <img id="imagenPreview" class="img-thumbnail" width="150" style="display:none;">
                         </div>
                     </div>
 
 
                 </div>
 
-                <div class="modal-footer">
-
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-
-                </div>
-            </form>
-
-
-        </div>
-    </div>
-</div>
 
 
 
 
-<?php include_once 'Views/template/footer.php' ?>
+                <?php include_once 'Views/template/footer.php' ?>

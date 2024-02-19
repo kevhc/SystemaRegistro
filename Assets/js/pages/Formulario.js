@@ -22,39 +22,15 @@ document.addEventListener('DOMContentLoaded', function () {
             { data: 'sexo' },
             { data: 'region' },
             { data: 'telefono' },
-            { data: 'imagen' },
             { data: 'fecha' },
             { data: 'acciones' },
         ],
-
 
         language: {
             url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
         },
 
         responsive: true,
-
-        dom: "<'row'<'col-lg-4'<'dataTables_length'l>><'col-lg-4 text-center'B><'col-lg-4'<'d-flex justify-content-lg-end'f>>>" +
-            "<'row'<'col-12'tr>>" +
-            "<'row'<'col-lg-5'i><'col-lg-7'p>>",
-
-        buttons: [
-            {
-                extend: 'pdf',
-                className: 'btn btn-danger',
-                text: '<i class="ti ti-file-text fs-5"></i>' // Icono de PDF
-            },
-            {
-                extend: 'excel',
-                className: 'btn btn-success',
-                text: '<i class="ti ti-file-spreadsheet fs-5"></i>' // Icono de Excel
-            },
-            {
-                extend: 'print',
-                className: 'buttons-print',
-                text: '<i class="ti ti-printer fs-5"></i>' // Icono de Impresión
-            }
-        ]
 
     });
 
@@ -99,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (res.tipo == 'success') {
                         frm.reset();
                         myModal.hide();
-                        document.getElementById('imagenPreview').src = ''; // Limpiar la imagen
                         tblProductores.ajax.reload();
                     }
 
@@ -149,11 +124,8 @@ function editar(id) {
             frm.longitud.value = res.longitud;
             frm.latitud.value = res.latitud;
             frm.altitud.value = res.altitud;
-            frm.foto_actual.value = res.foto;
-            const imagenPreview = document.getElementById('imagenPreview');
-            imagenPreview.src = base_url + 'Assets/images/productores/' + res.foto;
             myModal.show();
-
+            console.log('ID del usuario a editar:', res.id);
         }
     };
 }

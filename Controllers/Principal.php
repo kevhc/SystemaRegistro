@@ -28,6 +28,17 @@ class Principal extends Controller
                 $_SESSION['usuario'] = $data['usuario'];
                 $_SESSION['nombre'] = $data['nombre'];
                 $_SESSION['email'] = $data['email'];
+                $_SESSION['rol'] = $data['rol'];
+
+                // Obtener la ruta de la imagen del usuario
+                $ruta_imagen = $this->model->obtenerRutaImagen($usuario);
+                if ($ruta_imagen) {
+                    $_SESSION['foto'] = $ruta_imagen;
+                } else {
+                    // Si no se encuentra la imagen, puedes establecer una ruta predeterminada o dejar la sesión vacía
+                    // $_SESSION['foto'] = 'ruta/a/imagen/default.jpg';
+                    // $_SESSION['foto'] = '';
+                }
 
                 $res = array('tipo' => 'success', 'mensaje' => 'Bienvenido al Sistema de Registro');
             } else {
