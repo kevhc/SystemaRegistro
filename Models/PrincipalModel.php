@@ -13,15 +13,15 @@ class PrincipalModel extends Query
 
     }
 
-    public function obtenerRutaImagen($usuario)
+    public function actualizarUltimoInicioSesion($usuarioId)
     {
-        $usuario_info = $this->getUsuario($usuario); // Obtener información del usuario
-        if ($usuario_info && !empty($usuario_info['foto'])) {
-            return $usuario_info['foto']; // Devolver la ruta de la imagen si existe
-        } else {
-            return false; // Devolver false si no se encuentra la imagen
-        }
+
+        $sql = "UPDATE usuarios SET ultima_conexion = NOW() WHERE id = ?";
+        $datos = array($usuarioId);
+        return $this->save($sql, $datos);
+
     }
+
 }
 
 ?>

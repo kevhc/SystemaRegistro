@@ -3,8 +3,11 @@ class Preguntas extends Controller
 {
     public function __construct()
     {
-        parent::__construct();
         session_start();
+        if (empty($_SESSION['activo'])) {
+            header("location: " . BASE_URL);
+        }
+        parent::__construct();
     }
 
     public function index()

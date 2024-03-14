@@ -4,15 +4,25 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Modernize Free</title>
     <link rel="shortcut icon" type="image/png" href="<?php echo BASE_URL . 'Assets/images/logos/favicon.png' ?>" />
     <link rel="stylesheet" href="<?php echo BASE_URL . 'Assets/css/styles.min.css' ?>" />
+    <!--Select 2-->
+    <!-- Primero carga jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!--Select2-->
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!--SweetAlert-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!--Icon-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <!--datatable-->
+
     <link
         href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.8/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sl-1.7.0/datatables.min.css"
         rel="stylesheet">
@@ -27,7 +37,7 @@
             <!-- Sidebar scroll-->
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
-                    <a href="./index.html" class="text-nowrap logo-img">
+                    <a href="<?php echo BASE_URL . 'Admin' ?>" class="text-nowrap logo-img">
                         <img src="<?php echo BASE_URL . 'Assets/images/logos/dark-logo.svg' ?>" width="180" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -78,23 +88,23 @@
                             </a>
                         </li>
                         <?php if ($_SESSION['id'] == 1) { ?>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo BASE_URL . 'Certificados' ?>"
-                                aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-certificate"></i>
-                                </span>
-                                <span class="hide-menu">Certificados</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo BASE_URL . 'Preguntas' ?>" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-question-mark"></i>
-                                </span>
-                                <span class="hide-menu">Preguntas</span>
-                            </a>
-                        </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="<?php echo BASE_URL . 'Certificados' ?>"
+                                    aria-expanded="false">
+                                    <span>
+                                        <i class="ti ti-certificate"></i>
+                                    </span>
+                                    <span class="hide-menu">Certificados</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="<?php echo BASE_URL . 'Preguntas' ?>" aria-expanded="false">
+                                    <span>
+                                        <i class="ti ti-question-mark"></i>
+                                    </span>
+                                    <span class="hide-menu">Preguntas</span>
+                                </a>
+                            </li>
 
                         <?php } ?>
 
@@ -111,45 +121,45 @@
                             </a>
                         </li>
                         <?php if ($_SESSION['id'] == 1) { ?>
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">Historial</span>
-                        </li>
+                            <li class="nav-small-cap">
+                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                <span class="hide-menu">Historial</span>
+                            </li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo BASE_URL . 'HProductores' ?>"
-                                aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-report"></i>
-                                </span>
-                                <span class="hide-menu">HProductores</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo BASE_URL . 'HCertificados' ?>"
-                                aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-report"></i>
-                                </span>
-                                <span class="hide-menu">HCertificados</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo BASE_URL . 'HPreguntas' ?>" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-report"></i>
-                                </span>
-                                <span class="hide-menu">HPreguntas</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo BASE_URL . 'HParcelas' ?>" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-report"></i>
-                                </span>
-                                <span class="hide-menu">HParcelas</span>
-                            </a>
-                        </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="<?php echo BASE_URL . 'HProductores' ?>"
+                                    aria-expanded="false">
+                                    <span>
+                                        <i class="ti ti-report"></i>
+                                    </span>
+                                    <span class="hide-menu">HProductores</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="<?php echo BASE_URL . 'HCertificados' ?>"
+                                    aria-expanded=" false">
+                                    <span>
+                                        <i class="ti ti-report"></i>
+                                    </span>
+                                    <span class="hide-menu">HCertificados</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="<?php echo BASE_URL . 'HPreguntas' ?>" aria-expanded=" false">
+                                    <span>
+                                        <i class="ti ti-report"></i>
+                                    </span>
+                                    <span class="hide-menu">HPreguntas</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="<?php echo BASE_URL . 'HParcelas' ?>" aria-expanded=" false">
+                                    <span>
+                                        <i class="ti ti-report"></i>
+                                    </span>
+                                    <span class="hide-menu">HParcelas</span>
+                                </a>
+                            </li>
                         <?php } ?>
 
                     </ul>

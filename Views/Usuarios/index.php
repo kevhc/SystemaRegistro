@@ -130,7 +130,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="rol">Rol</label>
-                            <select class="form-select" aria-label="Default select example" name="rol" id="rol">
+                            <select class="form-select" class="js-example-basic-single" name="rol" id="rol">
                                 <option selected>Seleccionar</option>
                                 <option value="1">Administrador</option>
                                 <option value="2">Usuario</option>

@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
     frm.clave.removeAttribute('readonly');
     myModal.show();
   });
+
   //REGISTRAR USUARIO POR AJAX
 
   frm.addEventListener('submit', function (e) {

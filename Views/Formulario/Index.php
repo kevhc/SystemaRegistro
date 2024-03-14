@@ -33,16 +33,15 @@
 
             <div class="table-responsive">
 
-                <table class="table table-bordered display nowrap table-hover" id="tblProductores" width="100%">
+                <table class="table table-bordered display nowrap table-hover" id="tblFormulario" width="100%">
                     <thead class="table-dark">
                         <tr>
                             <th>Id</th>
-                            <th>Nombres</th>
-                            <th>Dni</th>
-                            <th>Sexo</th>
-                            <th>Region</th>
-                            <th>Telefono</th>
-                            <th>Fecha Registro</th>
+                            <th>Codigo</th>
+                            <th>Productor</th>
+                            <th>Certificados</th>
+                            <th>Obsevaciones</th>
+                            <th>Fecha</th>
                             <th>Acciones</th>
 
                         </tr>

@@ -15,7 +15,7 @@
                                 <a class="text-muted text-decoration-none"
                                     href="<?php echo BASE_URL . 'Admin' ?>">Inicio</a>
                             </li>
-                            <li class="breadcrumb-item" aria-current="page">Usuarios</li>
+                            <li class="breadcrumb-item" aria-current="page">Parcelas</li>
                         </ol>
                     </nav>
                 </div>

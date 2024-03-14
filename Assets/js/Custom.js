@@ -1,3 +1,8 @@
+
+$(document).ready(function () {
+  $('.js-example-basic-single').select2();
+});
+
 function alertaPersonalizada(type, mensaje) {
   Swal.fire({
     icon: type,
@@ -69,4 +74,44 @@ function acceso(params) {
   });
 }
 
-// select2
+// cierre de Sesion por inactivo
+
+
+// let inactivityTimer;
+
+// function resetInactivityTimer() {
+//   clearTimeout(inactivityTimer);
+//   inactivityTimer = setTimeout(function () {
+//     cerrarSesionPorInactividad();
+//   }, 30000); // 300000 milisegundos = 5 minutos
+// }
+
+// function cerrarSesionPorInactividad() {
+//   fetch(base_url + 'Principal/Salir', {
+//     method: 'GET',
+//     headers: {
+//       'Cache-Control': 'no-cache, no-store, must-revalidate',
+//       'Pragma': 'no-cache',
+//       'Expires': '0'
+//     }
+//   })
+//     .then(response => {
+//       if (response.ok) {
+//         // Redireccionar a la página de inicio de sesión después de cerrar la sesión
+//         window.location = base_url;
+//       } else {
+//         console.error('Error al cerrar sesión:', response.statusText);
+//       }
+//     })
+//     .catch(error => {
+//       console.error('Error al cerrar sesión:', error);
+//     });
+// }
+
+// // Eventos de usuario que reinician el temporizador
+// document.addEventListener('mousemove', resetInactivityTimer);
+// document.addEventListener('keypress', resetInactivityTimer);
+// document.addEventListener('scroll', resetInactivityTimer);
+
+// // Reiniciar el temporizador al cargar la página
+// document.addEventListener('DOMContentLoaded', resetInactivityTimer);

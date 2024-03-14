@@ -3,8 +3,8 @@ class Principal extends Controller
 {
     public function __construct()
     {
-        parent::__construct();
         session_start();
+        parent::__construct();
     }
 
     public function index()
@@ -24,21 +24,16 @@ class Principal extends Controller
 
             if (password_verify($clave, $data['clave'])) {
 
+                // Actualizar el registro del usuario en la base de datos
+                $this->model->actualizarUltimoInicioSesion($data['id']);
+
                 $_SESSION['id'] = $data['id'];
                 $_SESSION['usuario'] = $data['usuario'];
                 $_SESSION['nombre'] = $data['nombre'];
                 $_SESSION['email'] = $data['email'];
                 $_SESSION['rol'] = $data['rol'];
+                $_SESSION['activo'] = true;
 
-                // Obtener la ruta de la imagen del usuario
-                $ruta_imagen = $this->model->obtenerRutaImagen($usuario);
-                if ($ruta_imagen) {
-                    $_SESSION['foto'] = $ruta_imagen;
-                } else {
-                    // Si no se encuentra la imagen, puedes establecer una ruta predeterminada o dejar la sesión vacía
-                    // $_SESSION['foto'] = 'ruta/a/imagen/default.jpg';
-                    // $_SESSION['foto'] = '';
-                }
 
                 $res = array('tipo' => 'success', 'mensaje' => 'Bienvenido al Sistema de Registro');
             } else {
@@ -56,7 +51,13 @@ class Principal extends Controller
 
     public function salir()
     {
+        session_unset();
         session_destroy();
+        header('Cache-Control: no-cache, no-store, must-revalidate');
+        header('Pragma: no-cache');
+        header('Expires: 0');
         header('Location:' . BASE_URL);
     }
+
+
 }
