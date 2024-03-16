@@ -40,7 +40,6 @@
                             <th>Codigo</th>
                             <th>Productor</th>
                             <th>Certificados</th>
-                            <th>Obsevaciones</th>
                             <th>Fecha</th>
                             <th>Acciones</th>
 

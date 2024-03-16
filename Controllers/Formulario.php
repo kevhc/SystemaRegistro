@@ -4,7 +4,7 @@ class Formulario extends Controller
     public function __construct()
     {
         session_start();
-        if (empty($_SESSION['activo'])) {
+        if (empty ($_SESSION['activo'])) {
             header("location: " . BASE_URL);
         }
         parent::__construct();
@@ -27,6 +27,8 @@ class Formulario extends Controller
 
         for ($i = 0; $i < count($data); $i++) {
 
+            $data[$i]['nombre'];
+            $data[$i]['certificados'];
             $data[$i]['acciones'] = '<div>
             <button type="button" class="btn btn-primary" onclick="editar(' . $data[$i]['id'] . ')"><i class="ti ti-pencil" style="font-size: 23px;"></i></button>
             <button type="button" class="btn btn-dark" onclick="eliminar(' . $data[$i]['id'] . ')"><i class="ti ti-trash"style="font-size: 23px;"></i></button>
@@ -51,6 +53,9 @@ class Formulario extends Controller
         echo json_encode($res, JSON_UNESCAPED_UNICODE);
         die();
     }
+
+
+
 
 
 }

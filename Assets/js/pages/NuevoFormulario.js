@@ -91,15 +91,37 @@ $(document).ready(function () {
 document.addEventListener('DOMContentLoaded', function () {
 
 
+
+    //CARGAR DATOS CON DATATABLE
+    tblFormulario = $('#tblFormulario').DataTable({
+        ajax: {
+            url: base_url + 'NuevoFormulario/listar',
+            dataSrc: '',
+        },
+        columns: [
+            { data: 'id' },
+            { data: 'preguntas' },
+            { data: 'opciones' },
+            { data: 'observaciones' },
+        ],
+
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+        },
+
+        responsive: true,
+
+    });
+
+
     frm.addEventListener('submit', function (e) {
         e.preventDefault();
         if (
             frm.codigoGenerado.value == '' ||
             frm.productor.value == '' ||
             frm.certificados.value == '' ||
-            frm.parcelas.value == '' ||
-            frm.cumplimiento.value == '' ||
-            frm.observaciones.value == ''
+            frm.parcelas.value == ''
+
         ) {
             alertaPersonalizada('warning', 'Todos los campos son requeridos');
         } else {
@@ -128,20 +150,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-function mostrarInformacion() {
-
-    // Realizar una solicitud AJAX al servidor para obtener los datos
-    const url = base_url + "Preguntas/listar"; // Reemplaza "obtenerDatos" con el nombre de tu método en el controlador que devuelve los datos
-    const http = new XMLHttpRequest();
-    http.open("GET", url, true);
-    http.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            const datos = JSON.parse(this.responseText);
-            console.log(datos);
-        }
-    };
-    http.send();
-}
-
-mostrarInformacion();
 

@@ -18,9 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
         columns: [
             { data: 'id' },
             { data: 'codigo' },
-            { data: 'id_productor' },
-            { data: 'certificado' },
-            { data: 'observaciones' },
+            { data: 'nombre' },
+            { data: 'certificados' },
             { data: 'fecha' },
             { data: 'acciones' },
         ],

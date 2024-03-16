@@ -4,7 +4,7 @@ class Admin extends Controller
     public function __construct()
     {
         session_start();
-        if (empty($_SESSION['activo'])) {
+        if (empty ($_SESSION['activo'])) {
             header("location: " . BASE_URL);
         }
         parent::__construct();
@@ -50,6 +50,28 @@ class Admin extends Controller
         die();
     }
 
+    public function ConteoPastel()
+    {
+        $data = $this->model->ConteoPastel();
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function ConteoFormulario()
+    {
+        $data = $this->model->ConteoFormulario();
+
+        // Itera sobre los resultados y agrega un campo "nombre_completo" que contenga el nombre y apellido concatenados
+        foreach ($data as &$row) {
+            $row['nombre_completo'] = $row['nombre'] . ' ' . $row['apellido'];
+            // Elimina los campos de nombre y apellido si ya no son necesarios
+            unset($row['nombre']);
+            unset($row['apellido']);
+        }
+
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 
 
 

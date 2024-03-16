@@ -12,8 +12,11 @@ class FormularioModel extends Query
     public function getFormulario()
     {
         // Consulta para obtener los datos del formulario junto con el nombre del certificado
-        $sql = "SELECT h.*,GROUP_CONCAT(c.certificado) FROM formulario h INNER JOIN  certificado c ON FIND_IN_SET(c.id, h.certificado) > 0
-        GROUP BY h.id";
+        $sql = "SELECT h.*, p.nombre, GROUP_CONCAT(c.certificado SEPARATOR ', ') AS certificados
+        FROM formulario h 
+        INNER JOIN productores p ON h.id_productor = p.id 
+        LEFT JOIN certificado c ON FIND_IN_SET(c.id, h.certificado)
+        GROUP BY h.id;";
 
         // Ejecutar la consulta y devolver los resultados
         return $this->selectAll($sql);
