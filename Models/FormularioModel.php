@@ -16,6 +16,7 @@ class FormularioModel extends Query
         FROM formulario h 
         INNER JOIN productores p ON h.id_productor = p.id 
         LEFT JOIN certificado c ON FIND_IN_SET(c.id, h.certificado)
+        WHERE h.estado = 1
         GROUP BY h.id;";
 
         // Ejecutar la consulta y devolver los resultados

@@ -72,8 +72,11 @@ class NuevoFormularioModel extends Query
         $datos = array($id_formulario, $opcion, $observacion, $id_pregunta);
         return $this->insertar($sql, $datos);
     }
-
-
+    public function getEditarFormulario($id)
+    {
+        $sql = "SELECT * FROM formulario WHERE id = $id";
+        return $this->select($sql);
+    }
 
 
 

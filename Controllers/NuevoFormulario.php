@@ -161,5 +161,13 @@ class NuevoFormulario extends Controller
         die();
     }
 
+    public function editar($id)
+    {
 
+        $data = $this->model->getEditarFormulario($id);
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+
+
+    }
 }

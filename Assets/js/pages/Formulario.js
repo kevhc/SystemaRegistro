@@ -3,7 +3,7 @@ const btnNuevo = document.querySelector('#btnNuevo');
 const modalRegistro = document.querySelector('#modalRegistro');
 const title = document.querySelector('#title');
 
-const myModal = new bootstrap.Modal(modalRegistro);
+// const myModal = new bootstrap.Modal(modalRegistro);
 
 let tblProductores;
 
@@ -33,9 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     btnNuevo.addEventListener('click', function () {
-        title.textContent = 'NUEVO FORMULARIO';
-        // frm.id_productores.value = '';
-        frm.reset();
         window.location.href = base_url + 'NuevoFormulario';
     });
 
@@ -58,6 +55,22 @@ function eliminar(id) {
     );
 }
 
+function editar(id) {
+    const http = new XMLHttpRequest();
 
+    const url = base_url + 'NuevoFormulario/editar/' + id;
+
+    http.open('GET', url, true);
+
+    http.send();
+
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const res = JSON.parse(this.responseText);
+            frm.id_formulario.value = res.id;
+            console.log(res);
+        }
+    };
+}
 
 

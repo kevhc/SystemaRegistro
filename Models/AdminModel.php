@@ -62,6 +62,7 @@ class AdminModel extends Query
  INNER JOIN formulario p ON r.id_formulario = p.id
  INNER JOIN productores pr ON p.id_productor = pr.id
  GROUP BY r.id_formulario, p.id_productor, pr.nombre, pr.apellido
+ ORDER BY RAND()
  LIMIT 3;";
         return $this->selectAll($sql);
     }
